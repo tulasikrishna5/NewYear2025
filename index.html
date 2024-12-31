@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    
+    .container {
+      text-align: center;
+      position: relative;
+    }
+    
+    .title {
+      color: gold;
+      font-size: 4em;
+      opacity: 0;
+      animation: fadeIn 2s forwards, glow 2s infinite;
+      text-shadow: 0 0 10px gold;
+    }
+    
+    .subtitle {
+      color: white;
+      font-size: 2em;
+      opacity: 0;
+      animation: fadeIn 2s forwards 2s;
+    }
+    
+    .firework {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      animation: explode 1s ease-out forwards;
+    }
+    
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    
+    @keyframes glow {
+      50% { text-shadow: 0 0 20px gold; }
+    }
+    
+    @keyframes explode {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px) scale(30);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Happy New Year 2025!</h1>
+    <p class="subtitle">Wishing You Joy, Peace & Prosperity</p>
+  </div>
+
+  <script>
+    function createFirework() {
+      const firework = document.createElement('div');
+      firework.className = 'firework';
+      firework.style.left = Math.random() * window.innerWidth + 'px';
+      firework.style.top = Math.random() * window.innerHeight + 'px';
+      firework.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+      document.body.appendChild(firework);
+      
+      firework.addEventListener('animationend', () => {
+        firework.remove();
+      });
+    }
+
+    setInterval(createFirework, 300);
+  </script>
+</body>
+</html>
